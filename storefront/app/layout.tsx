@@ -1,6 +1,6 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Lato, Inter } from 'next/font/google'
+import { Fraunces, Inter } from 'next/font/google'
 import { Providers } from './providers'
 import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
@@ -14,9 +14,10 @@ import dynamic from 'next/dynamic'
 
 const CookieConsent = dynamic(() => import('@/components/cookie-consent'))
 
-const heading = Lato({
+const heading = Fraunces({
   subsets: ['latin'],
-  weight: ['400', '700'],
+  weight: ['400', '500', '600', '700'],
+  style: ['normal', 'italic'],
   variable: '--font-heading',
   display: 'swap',
 })
@@ -30,10 +31,10 @@ const body = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Store — Modern Commerce',
-    template: '%s | Store',
+    default: 'Trailhound — Adventure Fuel for Dogs',
+    template: '%s | Trailhound',
   },
-  description: 'Discover curated products crafted with care. A modern ecommerce experience.',
+  description: 'Premium portable hydration and outdoor essentials for dogs who live for the trail. Built from 304 stainless steel. Leak-proof, adventure-proof.',
 }
 
 export default function RootLayout({

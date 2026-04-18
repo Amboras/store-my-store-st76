@@ -81,27 +81,50 @@ export default function Header() {
             </button>
 
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2">
+            <Link href="/" className="flex items-center gap-2 group">
+              <svg
+                viewBox="0 0 32 32"
+                className="h-7 w-7 text-[hsl(var(--primary))] transition-transform group-hover:-rotate-6"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.75"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                {/* Paw print mark */}
+                <circle cx="11" cy="10" r="2.2" fill="currentColor" />
+                <circle cx="21" cy="10" r="2.2" fill="currentColor" />
+                <circle cx="7" cy="16" r="2" fill="currentColor" />
+                <circle cx="25" cy="16" r="2" fill="currentColor" />
+                <path
+                  d="M16 14.5c-3.6 0-6.5 2.6-6.5 5.8 0 2.2 1.9 4.2 4.2 4.2 1 0 1.6-.4 2.3-.4s1.3.4 2.3.4c2.3 0 4.2-2 4.2-4.2 0-3.2-2.9-5.8-6.5-5.8z"
+                  fill="currentColor"
+                />
+              </svg>
               <span className="font-heading text-2xl font-semibold tracking-tight">
-                Store
+                Trailhound
               </span>
             </Link>
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center gap-8">
-              <Link href="/products" className="text-sm tracking-wide uppercase link-underline py-1" prefetch={true}>
+              <Link href="/products" className="text-xs tracking-[0.15em] uppercase link-underline py-1 font-medium" prefetch={true}>
                 Shop All
               </Link>
-              {collections?.slice(0, 4).map((collection: any) => (
+              {collections?.slice(0, 3).map((collection: any) => (
                 <Link
                   key={collection.id}
                   href={`/collections/${collection.handle}`}
-                  className="text-sm tracking-wide uppercase link-underline py-1"
+                  className="text-xs tracking-[0.15em] uppercase link-underline py-1 font-medium"
                   prefetch={true}
                 >
                   {collection.title}
                 </Link>
               ))}
+              <Link href="/about" className="text-xs tracking-[0.15em] uppercase link-underline py-1 font-medium" prefetch={true}>
+                Our Story
+              </Link>
             </nav>
 
             {/* Actions */}

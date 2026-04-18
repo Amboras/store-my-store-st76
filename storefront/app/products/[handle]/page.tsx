@@ -11,6 +11,7 @@ import ProductAccordion from '@/components/product/product-accordion'
 import { ProductViewTracker } from '@/components/product/product-view-tracker'
 import { getProductPlaceholder } from '@/lib/utils/placeholder-images'
 import { type VariantExtension } from '@/components/product/product-price'
+import LoopiProductView from '@/components/product/loopi-product-view'
 
 async function getProduct(handle: string) {
   try {
@@ -96,6 +97,27 @@ export default async function ProductPage({
   }
 
   const variantExtensions = await getVariantExtensions(product.id)
+
+  // Detect rental-style product (has a "Laufzeit" / "Duration" option) and render
+  // the dedicated Loopi-style product view instead of the default layout.
+  const isRentalStyle = (product.options || []).some((o) =>
+    /laufzeit|duration|term/i.test(o.title || ''),
+  )
+
+  if (isRentalStyle) {
+    return (
+      <>
+        <ProductViewTracker
+          productId={product.id}
+          productTitle={product.title}
+          variantId={product.variants?.[0]?.id || null}
+          currency={product.variants?.[0]?.calculated_price?.currency_code || 'usd'}
+          value={product.variants?.[0]?.calculated_price?.calculated_amount ?? null}
+        />
+        <LoopiProductView product={product} variantExtensions={variantExtensions} />
+      </>
+    )
+  }
 
   const allImages = [
     ...(product.thumbnail ? [{ url: product.thumbnail }] : []),

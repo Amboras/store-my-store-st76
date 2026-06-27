@@ -100,7 +100,7 @@ export default async function ProductPage({
 
   // Detect rental-style product (has a "Laufzeit" / "Duration" option) and render
   // the dedicated Loopi-style product view instead of the default layout.
-  const isRentalStyle = (product.options || []).some((o) =>
+  const isRentalStyle = (product.options || []).some((o: { title?: string }) =>
     /laufzeit|duration|term/i.test(o.title || ''),
   )
 
